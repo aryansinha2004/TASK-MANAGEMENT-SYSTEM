@@ -72,8 +72,11 @@ app.use(errorRoute);
 
 mongoose.set('strictQuery', true);
 mongoose.connect(MONGO_URI)
-.then(() => {
+  .then(() => {
     console.log("Database Connected !");
-    app.listen(PORT || 3000);
-})
-.catch(e => console.log(e));
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch(e => console.log(e));
