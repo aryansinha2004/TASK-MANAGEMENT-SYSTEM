@@ -1,0 +1,43 @@
+<%- include("../includes/header.ejs") %>
+    <section class="p-4 flex gap-y-2 items-center justify-between mb-12 lg:px-[8vw]">
+        <h1 class="text-center text-xl">Tasks</h1>
+        <a class="w-12 h-12 rounded-full border-2 flex items-center justify-center text-primary" href="/admin/add-task"><i class="fa-2xl fa-regular fa-plus"></i></a>
+    </section>
+    <section class="p-2 gap-y-4">
+        <% if(tasks.length > 0) { %>
+            <% for(i in tasks) { %>
+                <article class="mx-auto mb-4 max-w-3xl border-2 p-4 rounded">
+                    <div class="grid grid-cols-[7fr_4fr_1fr] mb-4">
+                        <div>
+                            <h1 class="text-xl mb-2">Task: <%= tasks[i]._id.toString().slice(-8).toUpperCase() %> (<%= tasks[i].status %>)</h1>
+                            <h2 class="font-bold">Assignee - <%= tasks[i].assignee.name %><h2>
+                            <ul class="ml-4 text-sm">
+                                <li><i class="fa-xs fa-solid fa-phone mr-2"></i><%= tasks[i].assignee.phone %></li>
+                                <li><i class="fa-xs fa-solid fa-envelope mr-2"></i><%= tasks[i].assignee.email %></li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col gap-2 justify-center text-xs">
+                            <p class="deadline">Assigned On:<br> <%= tasks[i].assignedOn.toDateString() %></p>
+                            <p class="deadline">Deadline:<br> <%= tasks[i].deadline.toDateString() %></p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <form action="/admin/delete-task" method="POST" class="m-0 p-0">
+                                <input type="hidden" value="<%= tasks[i]._id %>" name="taskId">
+                                <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                            <a href="/admin/edit-task/<%= tasks[i]._id %>?edit=true"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="font-bold">Description</h1>
+                        <p class="h-16 overflow-y-scroll"><%= tasks[i].description %></p>
+                    </div>
+
+                </article>
+            <% } %>
+        <% } else { %>
+            <h1 class="text-xl text-center">No Tasks :)</h1>
+        <% } %>
+    </section>
+
+<%- include("../includes/footer.ejs") %>

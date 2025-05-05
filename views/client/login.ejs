@@ -1,0 +1,18 @@
+<%- include("../includes/header.ejs") %>
+
+<section class="min-h-[calc(100vh-75px)] flex flex-wrap w-full items-center md:items-stretch justify-center md:justify-between">
+    <div class="flex-1 hidden md:flex items-center justify-center "><img src="/images/Login.avif"></div>
+    <form action="/login" method="POST" class="text-tertiary bg-primary text-md md:text-xl md:px-16 p-8 md:py-0 flex flex-col justify-center rounded md:rounded-none">
+        <div class="form-control border-b-2 mb-4">
+            <label for="email" class="block"> Email: </label>
+            <input type="email" id="email" name="email" required class="outline-none w-full bg-transparent">
+        </div>
+        <div class="border-b-2 mb-12">
+            <label for="password" class="block"> Password: </label>
+            <input type="password" id="password" name="password" required class="outline-none w-full bg-transparent">
+        </div>
+        <input type="submit" value="Sign in" class=" hover:bg-quarternary bg-secondary cursor-pointer py-2 rounded-full">
+    </form>
+</section>
+
+<%- include("../includes/footer.ejs") %>

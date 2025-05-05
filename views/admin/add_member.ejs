@@ -1,0 +1,33 @@
+<%- include("../includes/header.ejs") %>
+
+<main class="min-h-screen flex items-center justify-center px-4">
+    <form action="/admin/<% if(editing) { %>edit-member?edit=true<% } else { %>add<% } %>" method="POST" enctype="multipart/form-data" class="flex flex-col gap-2 px-12 py-4 border-2 rounded-lg shadow-md">
+        <h1 class="text-tertiary text-3xl mb-4">Add Member</h1>
+        <div class="form-control border-b-2">
+            <label for="name" class="block"> Name: </label>
+            <input type="text" id="name" name="name"  value="<% if(editing) { %><%=member.name%><% } else { %><% } %>" placeholder="John Doe" required class="outline-none w-full">
+        </div>
+        <div class="border-b-2">
+            <label for="email" class="block"> Email: </label>
+            <input type="text" id="email" name="email" value="<% if(editing) { %><%=member.email%><% } else { %><% } %>" placeholder="xyz@company.mail" required class="outline-none w-full">
+        </div>
+        <div class="form-control border-b-2">
+            <label for="phone" class="block"> Phone: </label>
+            <input type="tel" id="phone" name="phone" required value="<% if(editing) { %><%=member.phone%><% } else { %><% } %>" placeholder="XXXX XXX XXX" class="outline-none w-full bg-transparent">
+        </div>
+        <div class="form-control py-4">
+            <label for="image">Image: </label>
+            <input type="file" name="image" id="image">
+        </div>
+        <div class="form-control border-b-2 mb-12">
+            <label for="password" class="block"> Password: </label>
+            <input type="password" id="password" name="password" class="outline-none w-full bg-transparent">
+        </div>
+        <% if (editing) { %>
+            <input type="hidden" value="<%= member.id %>" name="memberId">
+        <% } %>
+        <input type="submit" value="<% if(editing) { %>Update Member<% } else { %>Add Member<% } %>" class="bg-primary text-secondary rounded-sm p-2 cursor-pointer">
+    </form>
+</main>
+
+<%- include("../includes/footer.ejs") %>

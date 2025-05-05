@@ -1,0 +1,30 @@
+<%- include("../includes/header.ejs") %>
+    <section class="p-4 flex gap-y-2 items-center justify-between mb-12 lg:px-[8vw]">
+        <h1 class="text-center text-xl">Members</h1>
+        <a class="w-12 h-12 rounded-full border-2 flex items-center justify-center text-primary" href="/admin/add"><i class="fa-2xl fa-regular fa-plus"></i></a>
+    </section>
+    <section class="flex flex-wrap gap-8 items-center justify-evenly mb-12">
+        <% for(member of team) { %>
+            <article class="h flex flex-col max-w-xs border-2 shadow-md duration-500 rounded-lg p-4 hover:-translate-y-2">
+                <img src="\<%=member.image %>" class="mb-4 rounded-full w-[200px] h-[200px]">
+                <h3 class="text-lg font-bold"><%= member.name %></h3>
+                <p class="mb-2"><%= member.position %></p>
+                <ul class="">
+                    <li><%= member.email %></li>
+                    <li><%= member.phone %></li>
+                </ul>
+                <ul class="flex gap-4 mt-8">
+                    <li><a href="/admin/edit-member/<%= member._id %>?edit=true"><i class="fa-xl fa-solid fa-pen-to-square"></i></a></li>
+                    <% if(member.id.toString() !== admin.id.toString()) {%>
+                    <li>
+                        <form action="/admin/delete-member" method="POST" class="m-0 p-0">
+                            <input type="hidden" value="<%= member._id %>" name="memberId">
+                            <button type="submit"><i class="fa-xl fa-solid fa-trash"></i></button>
+                        </form>
+                    </li>
+                    <% } %>
+                </ul>
+            </article>
+        <% } %>
+    </section>
+<%- include("../includes/footer.ejs") %>
