@@ -71,7 +71,7 @@ app.use(authRoute);
 app.use(errorRoute);
 
 mongoose.set('strictQuery', true);
-mongoose.connect(MONGO_URI)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Database Connected !");
     const PORT = process.env.PORT || 3000;
