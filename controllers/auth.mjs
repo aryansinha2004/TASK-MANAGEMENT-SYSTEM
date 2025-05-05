@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 export const getLogin = (req, res, next) => {
     res.render("client/login", {
-        docTitle: "Tasksphere | Login"
+        docTitle: "Taskmac | Login"
     })
 }
 
