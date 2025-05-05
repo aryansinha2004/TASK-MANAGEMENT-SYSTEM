@@ -4,7 +4,7 @@ const getHome = (req, res, next) => {
     Tasks.find({assignee: req.admin}).populate('assignor')
     .then(tasks => {
         res.render("admin/home", {
-            docTitle: req.admin.company + " | Tasksphere",
+            docTitle: req.admin.company + " | Taskmac",
             tasks: tasks
         })
     })
