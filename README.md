@@ -14,7 +14,6 @@
 - 🔍 Filter and search tasks
 - 🧭 Responsive navbar with routing
 - 🎨 Tailwind CSS styling
-- ☁️ Deployed with Vercel
 
 ---
 
@@ -23,5 +22,5 @@
 - **Frontend:** React.js
 - **Styling:** Tailwind CSS
 - **Routing:** React Router DOM
-- **Deployment:** Vercel
+  
 
